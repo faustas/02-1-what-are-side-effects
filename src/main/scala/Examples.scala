@@ -2,8 +2,8 @@ object Examples {
 
   var changeMe = "FOO"
 
-  final case class A()
-  final case class B()
+  final case class A(num: Int)
+  final case class B(num: Int)
 
   /**
    * Simple method that gets two parameters.
@@ -12,7 +12,7 @@ object Examples {
    * @param f Function that returns a value of type B
    * @return Value of type B
    */
-  def myMethod(a: A, f: (A) => B ) : B =
+  def myMethod(a: A, f: A => B ) : B =
     f(a)
 
   /**
@@ -23,7 +23,7 @@ object Examples {
    * @param f Function that returns a value of type B
    * @return Value of type B
    */
-  def mySideEffect(a: A, f: (A) => B ) : B = {
+  def mySideEffect(a: A, f: A => B ) : B = {
     println("SIDE_EFFECT")
     f(a)
   }
@@ -37,7 +37,7 @@ object Examples {
    * @param f Function that returns a value of type B
    * @return Value of type B
    */
-  def mySideEffectGlobal(a: A, f: (A) => B ) : B = {
+  def mySideEffectGlobal(a: A, f: A => B ) : B = {
     println(s"Unchanged global value: $changeMe")
     changeMe = "BAR"
     println(s"SIDE_EFFECT changed global value: $changeMe")
